@@ -1,0 +1,44 @@
+{
+    "name": "@felipeva/inertiajs-table-react",
+    "version": "1.0.0",
+    "main": "./dist/inertiajs-table-react.umd.js",
+    "module": "./dist/inertiajs-table-react.es.js",
+    "types": "./dist/index.d.ts",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": "^16"
+    },
+    "scripts": {
+        "dev": "vite build --watch",
+        "build": "tsc && vite build"
+    },
+    "repository": "git@github.com:FelipeVa/inertiajs-table-react.git",
+    "author": "Felipe Valencia <pipeedev@gmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/node": "^20.4.2",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.6",
+        "@vitejs/plugin-react": "^4.0.3",
+        "prettier": "3.0.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.1.6",
+        "vite": "^4.4.3",
+        "vite-plugin-dts": "^3.2.0"
+    },
+    "peerDependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "dependencies": {
+        "@inertiajs/core": "^1.0.9",
+        "@inertiajs/react": "^1.0.9",
+        "@lifespikes/cogent-ts": "^0.1.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "packageManager": "yarn@3.6.1"
+}

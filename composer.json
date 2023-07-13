@@ -1,24 +1,30 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "felipeva/inertiajs-table-react",
+    "description": "A Laravel package to help you quickly build Inertia.js tables with React.",
     "keywords": [
-        ":vendor_name",
+        "felipeva",
         "laravel",
-        ":package_slug"
+        "inertiajs-table-react"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/felipeva/inertiajs-table-react",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Felipe Valencia",
+            "email": "pipeedev@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.1",
+        "illuminate/contracts": "^10.0",
+        "illuminate/http": "^10.0",
+        "illuminate/pagination": "^10.0",
+        "illuminate/support": "^10.0",
+        "inertiajs/inertia-laravel": "^0.6.9",
+        "spatie/laravel-data": "^3.7",
         "spatie/laravel-package-tools": "^1.14.0",
-        "illuminate/contracts": "^10.0"
+        "spatie/laravel-query-builder": "^5.2"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -35,13 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "FelipeVa\\InertiaJsTableReact\\": "src/",
+            "FelipeVa\\InertiaJsTableReact\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "FelipeVa\\InertiaJsTableReact\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +67,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "FelipeVa\\InertiaJsTableReact\\InertiaTableServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "InertiaTable": "FelipeVa\\InertiaJsTableReact\\Facades\\InertiaTable"
             }
         }
     },

@@ -1,0 +1,160 @@
+<?php
+
+namespace FelipeVa\InertiaJsTableReact;
+
+use FelipeVa\InertiaJsTableReact\Data\Column;
+use FelipeVa\InertiaJsTableReact\Data\Filter;
+use FelipeVa\InertiaJsTableReact\Data\Search;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Spatie\QueryBuilder\QueryBuilder;
+
+/** @phpstan-consistent-constructor */
+abstract class TableResource
+{
+    protected string $tableName = 'default';
+
+    /**
+     * This is used to set the name of the key in the request
+     * Just in case you're using the Inertia Attribute
+     *
+     * @var string
+     */
+    protected string $resourceName = '';
+
+    /**
+     * @var int[]
+     */
+    protected array $perPageOptions = [15, 30, 50];
+
+    protected string $defaultSort = '';
+
+    protected string $perPage = '15';
+
+    /**
+     * @var array<int, Column>
+     */
+    protected array $columns = [];
+
+    /**
+     * @var array<int, Filter>
+     */
+    protected array $filters = [];
+
+    protected Request $request;
+
+    public function __construct()
+    {
+        $this->request = request();
+    }
+
+    /**
+     * @param  array<string, mixed>  $parameters
+     * @return static
+     */
+    public static function make(array $parameters = []): static
+    {
+        return app(static::class, $parameters);
+    }
+
+    abstract protected function data(): QueryBuilder;
+
+    /**
+     * @return array<int, Column>
+     */
+    abstract protected function columns(): array;
+
+    /**
+     * @return array<int, Filter>
+     */
+    abstract protected function filters(): array;
+
+    /**
+     * @return array<int, Search>
+     */
+    abstract protected function searches(): array;
+
+    public function getResourceName(): string
+    {
+        return $this->resourceName;
+    }
+
+    public function resource(): ResourceCollection
+    {
+        return new ResourceCollection(
+            $this->paginate($this->data())->withQueryString()
+        );
+    }
+
+    /**
+     * @param  callable|null  $callback
+     * @return Table
+     */
+    public function table(?callable $callback = null): Table
+    {
+        $table = Table::make($this->request)
+            ->name($this->tableName)
+            ->filters($this->filters())
+            ->columns($this->columns())
+            ->searches($this->searches())
+            ->pageName($this->tableName === 'default' ? 'page' : "{$this->tableName}_page")
+            ->perPage($this->perPage)
+            ->perPageOptions($this->perPageOptions)
+            ->defaultSort($this->defaultSort);
+
+        if ($callback !== null) {
+            $callback($table);
+        }
+
+        return $table;
+    }
+
+    /**
+     * @template T of Model
+     *
+     * @param  string|EloquentBuilder<T>|Relation<T>|QueryBuilder  $subject
+     * @param  Request|null  $request
+     * @return QueryBuilder
+     */
+    protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, ?Request $request = null): QueryBuilder
+    {
+        $this->updateQueryBuilderConfig();
+
+        if ($subject instanceof QueryBuilder) {
+            return $subject;
+        }
+
+        return QueryBuilder::for($subject, $request);
+    }
+
+    /**
+     * @param  QueryBuilder  $builder
+     * @return LengthAwarePaginator<Model>
+     */
+    protected function paginate(QueryBuilder $builder): LengthAwarePaginator
+    {
+        $queryKey = $this->getQueryKey();
+        $perPage = $this->request->integer("${queryKey}per_page", 15);
+
+        return $builder->paginate(
+            perPage: $perPage,
+            pageName: "${queryKey}page",
+        );
+    }
+
+    private function updateQueryBuilderConfig(): void
+    {
+        if ($this->tableName !== 'default') {
+            Table::updateQueryBuilderParameters($this->tableName);
+        }
+    }
+
+    private function getQueryKey(): string
+    {
+        return $this->tableName === 'default' ? '' : "{$this->tableName}_";
+    }
+}
