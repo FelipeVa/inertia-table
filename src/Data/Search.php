@@ -16,13 +16,6 @@ class Search extends Data implements TableComponent
 
     public FilterType $type = FilterType::SEARCH;
 
-    /**
-     * @param  string  $name
-     * @param  string  $label
-     * @param  string  $placeholder
-     * @param  bool  $isGlobal
-     * @param  string|null  $value
-     */
     public function __construct(
         public string $name,
         public string $label,
@@ -36,7 +29,6 @@ class Search extends Data implements TableComponent
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function value(string $value): self
@@ -47,7 +39,6 @@ class Search extends Data implements TableComponent
     }
 
     /**
-     * @param  string  $placeholder
      * @return $this
      */
     public function placeholder(string $placeholder): self

@@ -9,10 +9,5 @@ namespace FelipeVa\InertiaJsTableReact\Contracts;
  */
 interface TableComponent
 {
-    /**
-     * @param string $name
-     * @param string|null $label
-     * @return self
-     */
     public static function make(string $name, ?string $label): self;
 }
