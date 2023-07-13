@@ -17,11 +17,7 @@ class Filter extends Data implements TableComponent
     use Makeable;
 
     /**
-     * @param  string  $name
-     * @param  string  $label
      * @param  DataCollection<int, FilterOption>|null  $options
-     * @param  FilterType  $type
-     * @param  string|null  $value
      */
     public function __construct(
         public string $name,
@@ -47,7 +43,6 @@ class Filter extends Data implements TableComponent
     }
 
     /**
-     * @param  FilterType  $type
      * @return $this
      */
     public function type(FilterType $type): self
@@ -58,7 +53,6 @@ class Filter extends Data implements TableComponent
     }
 
     /**
-     * @param  string  $value
      * @return $this
      */
     public function value(string $value): self

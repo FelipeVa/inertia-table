@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 
 trait Makeable
 {
-    public static function make(string $name, ?string $label = null): self
+    public static function make(string $name, string $label = null): self
     {
         if (is_null($label)) {
             $label = Str::headline($name);

@@ -60,7 +60,6 @@ class Table
     /**
      * Retrieve a query string item from the request.
      *
-     * @param  string  $key
      * @param  array<int|string, mixed>|null|string  $default
      * @return array<int|string, mixed>|string|null
      */
@@ -85,7 +84,6 @@ class Table
     }
 
     /**
-     * @param  string  $name
      * @return $this
      */
     public function name(string $name): self
@@ -96,7 +94,6 @@ class Table
     }
 
     /**
-     * @param  string  $pageName
      * @return $this
      */
     public function pageName(string $pageName): self
@@ -118,7 +115,6 @@ class Table
     }
 
     /**
-     * @param  string  $defaultSort
      * @return $this
      */
     public function defaultSort(string $defaultSort): self
@@ -129,7 +125,6 @@ class Table
     }
 
     /**
-     * @param  string  $perPage
      * @return $this
      */
     public function perPage(string $perPage): self
@@ -173,7 +168,6 @@ class Table
     }
 
     /**
-     * @param  Column  $column
      * @return $this
      */
     public function column(Column $column): self
@@ -184,7 +178,6 @@ class Table
     }
 
     /**
-     * @param  Search  $search
      * @return $this
      */
     public function search(Search $search): self
@@ -195,7 +188,6 @@ class Table
     }
 
     /**
-     * @param  Filter  $filter
      * @return $this
      */
     public function filter(Filter $filter): self
@@ -295,7 +287,6 @@ class Table
      * @template T of TableComponent
      *
      * @param  Collection<int, T>  $collection
-     * @param  TableComponent $component
      * @return Collection<int, T>
      */
     private function addComponent(Collection $collection, TableComponent $component): Collection
@@ -306,10 +297,6 @@ class Table
             ->values();
     }
 
-    /**
-     * @param  Response  $response
-     * @return Response
-     */
     public function build(Response $response): Response
     {
         // Macros are magic, so PHPStan does not know about them.

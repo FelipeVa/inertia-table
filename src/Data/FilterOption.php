@@ -9,10 +9,6 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 #[MapInputName(SnakeCaseMapper::class)]
 class FilterOption extends Data
 {
-    /**
-     * @param  string  $value
-     * @param  string  $label
-     */
     public function __construct(
         public string $value,
         public string $label,

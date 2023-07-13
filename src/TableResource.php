@@ -21,8 +21,6 @@ abstract class TableResource
     /**
      * This is used to set the name of the key in the request
      * Just in case you're using the Inertia Attribute
-     *
-     * @var string
      */
     protected string $resourceName = '';
 
@@ -54,7 +52,6 @@ abstract class TableResource
 
     /**
      * @param  array<string, mixed>  $parameters
-     * @return static
      */
     public static function make(array $parameters = []): static
     {
@@ -90,11 +87,7 @@ abstract class TableResource
         );
     }
 
-    /**
-     * @param  callable|null  $callback
-     * @return Table
-     */
-    public function table(?callable $callback = null): Table
+    public function table(callable $callback = null): Table
     {
         $table = Table::make($this->request)
             ->name($this->tableName)
@@ -117,10 +110,8 @@ abstract class TableResource
      * @template T of Model
      *
      * @param  string|EloquentBuilder<T>|Relation<T>|QueryBuilder  $subject
-     * @param  Request|null  $request
-     * @return QueryBuilder
      */
-    protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, ?Request $request = null): QueryBuilder
+    protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, Request $request = null): QueryBuilder
     {
         $this->updateQueryBuilderConfig();
 
@@ -132,7 +123,6 @@ abstract class TableResource
     }
 
     /**
-     * @param  QueryBuilder  $builder
      * @return LengthAwarePaginator<Model>
      */
     protected function paginate(QueryBuilder $builder): LengthAwarePaginator
