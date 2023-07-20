@@ -20,7 +20,7 @@ export type Meta = {
     to: number;
     total: number;
 };
-export type PaginatedResourceResponse<T> = {
+export type Paginated<T> = {
     data: T[];
     links: Links;
     meta: Meta;

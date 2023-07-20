@@ -1,146 +1,151 @@
-import { router as x } from "@inertiajs/core";
-import { queryBuilder as S } from "@lifespikes/cogent-ts";
-import { usePage as E, router as M } from "@inertiajs/react";
-function V(t, e) {
+import { queryBuilder as K } from "@lifespikes/cogent-ts";
+import { router as j, usePage as T } from "@inertiajs/react";
+function M(e, r) {
   return Object.fromEntries(
-    Object.entries(t).filter(([r]) => e(r))
+    Object.entries(e).filter(([t]) => r(t))
   );
 }
-function K(t, e) {
-  return V(t, (r) => !e.includes(r));
+function C(e, r) {
+  return M(e, (t) => !r.includes(t));
 }
-function F(t, e) {
-  const r = { ...t };
-  return Object.keys(r).length === 0 || e.forEach((s) => {
+function B(e, r) {
+  const t = { ...e };
+  return Object.keys(t).length === 0 || r.forEach((s) => {
     const a = s.split("."), l = a.pop();
     if (!l)
       return;
-    const o = a.reduce((c, i) => c[i], r);
+    const o = a.reduce((i, c) => i[c], t);
     o && delete o[l];
-  }), r;
+  }), t;
 }
-function j(t, e = "default") {
-  return e === "default" ? t : `${e}_${t}`;
+function O(e, r = "default") {
+  return r === "default" ? e : `${r}_${e}`;
 }
-const B = (t, e = "") => Object.entries(t).flatMap(([r, s]) => typeof s == "object" && s !== null ? e ? B(s, `${e}[${r}]`) : B(s, `${r}`) : e ? [`${e}[${r}]=${s}`] : [`${r}=${s}`]);
-function A(t) {
-  const e = new URLSearchParams(t || window.location.search), r = {};
-  for (const [s, a] of e.entries()) {
-    const l = s.split("[").map((c) => c.endsWith("]") ? c.slice(0, -1) : c);
-    let o = r;
-    for (let c = 0; c < l.length; c++) {
-      const i = l[c];
-      o[i] || (c === l.length - 1 ? o[i] = a : o[i] = {}), o = o[i];
+const E = (e, r = "") => Object.entries(e).flatMap(([t, s]) => typeof s == "object" && s !== null ? r ? E(s, `${r}[${t}]`) : E(s, `${t}`) : r ? [`${r}[${t}]=${s}`] : [`${t}=${s}`]);
+function V(e) {
+  const r = new URLSearchParams(e || window.location.search), t = {};
+  for (const [s, a] of r.entries()) {
+    const l = s.split("[").map((i) => i.endsWith("]") ? i.slice(0, -1) : i);
+    let o = t;
+    for (let i = 0; i < l.length; i++) {
+      const c = l[i];
+      o[c] || (i === l.length - 1 ? o[c] = a : o[c] = {}), o = o[c];
     }
   }
-  return r;
+  return t;
 }
-function C() {
-  const t = A(), e = (s, a = void 0) => t[s] || a, r = window.location.origin + window.location.pathname;
+function U() {
+  const e = V(), r = (s, a = void 0) => e[s] || a, t = window.location.origin + window.location.pathname;
   return {
-    getParam: e,
-    params: t,
-    currentPath: r
+    getParam: r,
+    params: e,
+    currentPath: t
   };
 }
-function R(t) {
-  const { tableName: e = "default", queryKey: r, filters: s } = t || {}, { params: a, currentPath: l } = C(), o = r || j("filter", e), c = r || j("page", e), y = S({
+function H(e) {
+  const { tableName: r = "default", queryKey: t, filters: s } = e || {}, { params: a, currentPath: l } = U(), o = t || O("filter", r), i = t || O("page", r), h = K({
     baseUrl: l
-  })(), $ = (n) => F({ ...a }, [
+  })(), d = (n) => B({ ...a }, [
     ...n,
-    t != null && t.ignorePagination ? c : ""
-  ]), g = (n, u) => {
-    let m = $([`${o}.${n}`]);
-    u && (m = {
+    e != null && e.ignorePagination ? i : ""
+  ]), y = (n, u) => {
+    let f = d([`${o}.${n}`]);
+    u && (f = {
       ...a,
       [`${o}[${n}]`]: u
-    }), p(m);
+    }), p(f);
   }, w = (n, u) => {
-    const m = Object.keys(n).map((b) => `${o}.${b}`);
-    let P = $([
-      ...m,
+    const f = Object.keys(n).map((b) => `${o}.${b}`);
+    let P = d([
+      ...f,
       ...u ? u.map((b) => `${o}.${b}`) : []
     ]);
-    m.length && (P = Object.entries(n).reduce((b, [U, q]) => q ? {
+    f.length && (P = Object.entries(n).reduce((b, [x, S]) => S ? {
       ...b,
-      [`${o}[${U}]`]: q
+      [`${o}[${x}]`]: S
     } : b, P)), p(P);
-  }, h = (n, u) => {
-    let m = $([`${o}.${n == null ? void 0 : n.name}`]);
-    u && (m = {
-      ...m,
+  }, g = (n, u) => {
+    let f = d([`${o}.${n == null ? void 0 : n.name}`]);
+    u && (f = {
+      ...f,
       [`${o}[${n == null ? void 0 : n.name}]`]: u
-    }), p(m);
-  }, O = (n, u) => {
-    const m = s == null ? void 0 : s.find((P) => P.name === n);
-    if (!m)
+    }), p(f);
+  }, q = (n, u) => {
+    const f = s == null ? void 0 : s.find((P) => P.name === n);
+    if (!f)
       throw new Error(`Filter with name ${n} not found`);
-    h(m, u);
-  }, f = (n) => {
+    g(f, u);
+  }, F = (n) => {
     const u = {
-      ...F(a, [`${o}.${n.name}`])
+      ...B(a, [`${o}.${n.name}`])
     };
     p(u);
-  }, d = () => {
-    const n = K(a, [o]);
+  }, m = () => {
+    const n = C(a, [o]);
     p(n);
-  }, T = (n) => {
+  }, $ = (n) => {
     var u;
     return (u = a[o]) == null ? void 0 : u[n];
   }, p = (n) => {
-    x.visit(y.params(n).get(), {
+    j.visit(h.params(n).get(), {
       method: "get",
       preserveState: !0
     });
   };
   return {
-    onFilter: h,
-    onFilterByName: g,
+    onFilter: g,
+    onFilterByName: y,
     onMultiFilterByObject: w,
-    onFilterFor: O,
-    filterValue: T,
-    removeFilter: f,
-    clearFilters: d
+    onFilterFor: q,
+    filterValue: $,
+    removeFilter: F,
+    clearFilters: m
   };
 }
-function D(t) {
-  const { tableProps: e } = E().props;
-  return e[t];
+function k(e) {
+  const { tableProps: r } = T().props;
+  return r[e];
 }
-function W({ tableName: t, queryKey: e, column: r }) {
-  const s = e || j("sort", t), a = D(t), { params: l, currentPath: o } = C(), i = S({
+function L({ tableName: e, queryKey: r, column: t }) {
+  const s = r || O("sort", e), a = k(e), { params: l, currentPath: o } = U(), c = K({
     baseUrl: o,
     queryParams: {
       sort: s
     }
-  })(), y = a.sort, $ = K(l, [s]), g = (f) => {
-    i.sort([f.name]);
-  }, w = (f) => {
-    i.sort([`-${f.name}`]);
-  }, h = () => {
-    i.sort([]);
+  })(), h = a.sort, d = C(l, [s]), y = (m) => {
+    c.sort([m.name]);
+  }, w = (m) => {
+    c.sort([`-${m.name}`]);
+  }, g = () => {
+    c.sort([]);
   };
-  return { onSortBy: (f) => {
-    const d = f || r;
-    if (!d)
+  return { onSortBy: (m) => {
+    const $ = m || t;
+    if (!$)
       throw new Error("Column is required");
-    Object.keys($).length > 0 && i.params($), y === d.name ? w(d) : y === `-${d.name}` ? h() : g(d), M.visit(i.get(), {
+    Object.keys(d).length > 0 && c.params(d), h === $.name ? w($) : h === `-${$.name}` ? g() : y($), j.visit(c.get(), {
+      method: "get"
+    });
+  }, onSort: (m = "desc") => {
+    if (!t)
+      throw new Error("Column is required");
+    Object.keys(d).length > 0 && c.params(d), m === "asc" && t.sorted !== "asc" ? y(t) : m === "desc" && t.sorted !== "desc" ? w(t) : g(), j.visit(c.get(), {
       method: "get"
     });
   } };
 }
-function _({ name: t = "default", resource: e }) {
-  const r = E().props, s = e ? r[e] : r[t], a = r.tableProps[t];
+function Q({ name: e = "default", resource: r }) {
+  const t = T().props, s = r ? t[r] : t[e], a = t.tableProps[e];
   if (!a)
-    throw new Error(`Table ${t} does not exist`);
+    throw new Error(`Table ${e} does not exist`);
   const l = (o) => {
-    var c;
-    return ((c = a.columns.find((i) => i.name === o)) == null ? void 0 : c.hidden) ?? !1;
+    var i;
+    return ((i = a.columns.find((c) => c.name === o)) == null ? void 0 : i.hidden) ?? !1;
   };
   return {
-    tableName: t,
+    tableName: e,
     tableProps: {
-      name: t,
+      name: e,
       ...a,
       ...s
     },
@@ -148,15 +153,15 @@ function _({ name: t = "default", resource: e }) {
   };
 }
 export {
-  V as filterObject,
-  B as flattenKeyValueParams,
-  A as getParamsObject,
-  K as omit,
-  F as omitNotation,
-  j as queryKeyFor,
-  R as useFiltering,
-  C as useParams,
-  W as useSorting,
-  _ as useTable,
-  D as useTableProps
+  M as filterObject,
+  E as flattenKeyValueParams,
+  V as getParamsObject,
+  C as omit,
+  B as omitNotation,
+  O as queryKeyFor,
+  H as useFiltering,
+  U as useParams,
+  L as useSorting,
+  Q as useTable,
+  k as useTableProps
 };

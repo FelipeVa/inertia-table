@@ -1,5 +1,5 @@
 import {
-  PaginatedResourceResponse,
+  Paginated,
   TablePropReturns,
   UseTableOptions,
 } from '../types/common';
@@ -12,7 +12,7 @@ export function useTable<T>({ name = 'default', resource }: UseTableOptions) {
 
   const data = (
     resource ? props[resource] : props[name]
-  ) as PaginatedResourceResponse<T>;
+  ) as Paginated<T>;
   const tableProps = props.tableProps[name];
 
   if (!tableProps) {

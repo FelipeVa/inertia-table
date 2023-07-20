@@ -1,8 +1,12 @@
-import { router } from '@inertiajs/core';
 import { queryBuilder } from '@lifespikes/cogent-ts';
-import { FilterValue, SearchableItem, UseFilteringOptions } from '../types/common';
+import {
+  FilterValue,
+  SearchableItem,
+  UseFilteringOptions,
+} from '../types/common';
 import { useParams } from './useParams';
 import { omit, omitNotation, queryKeyFor } from '../support/utils';
+import { router } from '@inertiajs/react';
 
 export function useFiltering(props?: UseFilteringOptions) {
   const { tableName = 'default', queryKey, filters } = props || {};

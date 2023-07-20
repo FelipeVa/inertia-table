@@ -21,14 +21,14 @@
         "jsx": "react-jsx",
         "typeRoots": [
             "./node_modules/@types",
-            "./types"
+            "./js/types"
         ],
     },
     "include": [
-        "./resources/js/**/*.ts",
-        "./resources/js/**/*.tsx"
+        "./js/**/*.ts",
+        "./js/**/*.tsx"
     ],
     "exclude": [
-        "./src/**/*.stories.*"
+        "./js/**/*.stories.*"
     ]
 }

@@ -31,7 +31,29 @@ export function useSorting({ tableName, queryKey, column }: UseSortingOptions) {
     builder.sort([]);
   };
 
-  const onSortBy = (overrideColumn?: Column) => {
+  const onSort = (sortDirection: 'asc' | 'desc' = 'desc') => {
+    if (!column) {
+      throw new Error('Column is required');
+    }
+
+    if (Object.keys(filteredParams).length > 0) {
+      builder.params(filteredParams);
+    }
+
+    if (sortDirection === 'asc' && column.sorted !== 'asc') {
+      sortAsc(column);
+    } else if (sortDirection === 'desc' && column.sorted !== 'desc') {
+      sortDesc(column);
+    } else {
+      removeSort();
+    }
+
+    router.visit(builder.get(), {
+      method: 'get',
+    });
+  };
+
+  const onToggleSort = (overrideColumn?: Column) => {
     const realColumn = overrideColumn || column;
 
     if (!realColumn) {
@@ -55,5 +77,5 @@ export function useSorting({ tableName, queryKey, column }: UseSortingOptions) {
     });
   };
 
-  return { onSortBy };
+  return { onSortBy: onToggleSort, onSort };
 }

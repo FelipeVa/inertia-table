@@ -12,8 +12,8 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'resources/js/index.ts'),
-      name: 'Inertia.js Tables for Laravel Query Builder',
+      entry: resolve(__dirname, 'js/index.ts'),
+      name: 'Inertia.js Table React with the power of Laravel Query Builder',
       fileName: (format) => `inertiajs-table-react.${format}.js`,
     },
     rollupOptions: {

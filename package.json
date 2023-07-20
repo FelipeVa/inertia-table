@@ -19,6 +19,9 @@
     "author": "Felipe Valencia <pipeedev@gmail.com>",
     "license": "MIT",
     "devDependencies": {
+        "@inertiajs/core": "^1.0.9",
+        "@inertiajs/react": "^1.0.9",
+        "@lifespikes/cogent-ts": "^0.1.4",
         "@types/node": "^20.4.2",
         "@types/react": "^18.2.14",
         "@types/react-dom": "^18.2.6",
@@ -34,9 +37,6 @@
         "react-dom": "^18.2.0"
     },
     "dependencies": {
-        "@inertiajs/core": "^1.0.9",
-        "@inertiajs/react": "^1.0.9",
-        "@lifespikes/cogent-ts": "^0.1.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
     },
