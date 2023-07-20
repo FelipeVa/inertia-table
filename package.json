@@ -8,6 +8,13 @@
     "files": [
         "dist"
     ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/inertiajs-table-react.es.js",
+            "require": "./dist/inertiajs-table-react.umd.js"
+        }
+    },
     "engines": {
         "node": "^16"
     },
