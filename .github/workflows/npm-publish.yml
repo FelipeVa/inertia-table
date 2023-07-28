@@ -20,6 +20,8 @@ jobs:
       - name: Build package (if needed)
         run: yarn build
       - name: Publish package
-        run: yarn npm publish --access public
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${{secrets.NPM_TOKEN}}
+          yarn npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
