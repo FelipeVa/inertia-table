@@ -2,7 +2,7 @@
     "name": "@felipeva/inertiajs-table-react",
     "description": "A serie of React hooks to handle tables with InertiaJS",
     "keywords": ["inertiajs", "react", "table", "inertia", "inertia-react"],
-    "version": "1.0.2",
+    "version": "1.0.3",
     "main": "./dist/inertiajs-table-react.umd.js",
     "module": "./dist/inertiajs-table-react.es.js",
     "types": "./dist/index.d.ts",
