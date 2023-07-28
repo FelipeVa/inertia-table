@@ -22,7 +22,7 @@ class Column extends Data implements TableComponent
     ) {
     }
 
-    public function sorteable(bool $value = true): self
+    public function sortable(bool $value = true): self
     {
         $this->sortable = $value;
 

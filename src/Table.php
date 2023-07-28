@@ -207,7 +207,7 @@ class Table
             'filters' => $this->transformFilters(),
             'searches' => $this->transformSearches(),
             'cursor' => $this->query('cursor'),
-            'sort' => $this->query('sort', $this->defaultSort) ?? null,
+            'sort' => $this->query('sort', $this->defaultSort),
             'defaultSort' => $this->defaultSort,
             'page' => Paginator::resolveCurrentPage($this->pageName),
             'perPage' => $this->query('per_page', $this->perPage),

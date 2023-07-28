@@ -1,6 +1,6 @@
 {
     "name": "felipeva/inertiajs-table-react",
-    "description": "A Laravel package to help you quickly build Inertia.js tables with React.",
+    "description": "A Laravel package to help you quickly build Inertia.js tables with React and the help of Laravel Query Builder and Spatie's Laravel Data.",
     "keywords": [
         "felipeva",
         "laravel",
