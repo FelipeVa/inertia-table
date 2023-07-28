@@ -123,7 +123,6 @@ abstract class TableResource
     }
 
     /**
-     * @param QueryBuilder $builder
      * @return LengthAwarePaginator<Model>
      */
     protected function paginate(QueryBuilder $builder): LengthAwarePaginator
