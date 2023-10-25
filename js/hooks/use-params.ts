@@ -1,4 +1,4 @@
-import { getParamsObject } from '../support/utils';
+import { getParamsObject } from "@/support/utils";
 
 export function useParams() {
   const params = getParamsObject();

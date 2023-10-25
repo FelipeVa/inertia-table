@@ -20,14 +20,7 @@ class InertiaTableServiceProvider extends PackageServiceProvider
             return $this->props['tableProps'] ?? [];
         });
 
-        Response::macro('table', function (callable $tableBuilder = null) {
-            $request = request();
-            $table = new Table($request);
-
-            if (! is_null($tableBuilder)) {
-                $tableBuilder($table);
-            }
-
+        Response::macro('table', function (Table $table) {
             return $table->build($this);
         });
 
@@ -37,7 +30,7 @@ class InertiaTableServiceProvider extends PackageServiceProvider
             /** @var Enumerable<int, Table> $tables */
             $tablesCollection = collect($tables);
 
-            $tablesCollection->each(fn (Table $table) => $table->build($response));
+            $tablesCollection->each(fn(Table $table) => $table->build($response));
 
             /** @phpstan-ignore-next-line */
             return $response;
