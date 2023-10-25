@@ -18,12 +18,13 @@ use Spatie\QueryBuilder\QueryBuilder;
 abstract class TableResource
 {
     protected string $tableName = 'default';
+    protected int $linksOnEachSide = 0;
 
     /**
      * This is used to set the name of the key in the request
      * Just in case you're using the Inertia Attribute
      */
-    protected string $resourceName = '';
+    protected string $resourceName;
 
     /**
      * @var class-string<JsonResource>
@@ -57,7 +58,7 @@ abstract class TableResource
     }
 
     /**
-     * @param  array<string, mixed>  $parameters
+     * @param array<string, mixed> $parameters
      */
     public static function make(array $parameters = []): static
     {
@@ -114,12 +115,12 @@ abstract class TableResource
     {
         if (isset($this->resourceClass)) {
             return $this->resourceClass::collection(
-                $this->paginate($this->query())->withQueryString()
+                $this->paginate($this->query())->withQueryString()->onEachSide($this->linksOnEachSide)
             );
         }
 
         return new ResourceCollection(
-            $this->paginate($this->query())->withQueryString()
+            $this->paginate($this->query())->withQueryString()->onEachSide($this->linksOnEachSide)
         );
     }
 
@@ -145,7 +146,7 @@ abstract class TableResource
     /**
      * @template T of Model
      *
-     * @param  string|EloquentBuilder<T>|Relation<T>|QueryBuilder  $subject
+     * @param string|EloquentBuilder<T>|Relation<T>|QueryBuilder $subject
      */
     protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, Request $request = null): QueryBuilder
     {
