@@ -30,7 +30,7 @@ class InertiaTableServiceProvider extends PackageServiceProvider
             /** @var Enumerable<int, Table> $tables */
             $tablesCollection = collect($tables);
 
-            $tablesCollection->each(fn(Table $table) => $table->build($response));
+            $tablesCollection->each(fn (Table $table) => $table->build($response));
 
             /** @phpstan-ignore-next-line */
             return $response;
