@@ -20,14 +20,7 @@ class InertiaTableServiceProvider extends PackageServiceProvider
             return $this->props['tableProps'] ?? [];
         });
 
-        Response::macro('table', function (callable $tableBuilder = null) {
-            $request = request();
-            $table = new Table($request);
-
-            if (! is_null($tableBuilder)) {
-                $tableBuilder($table);
-            }
-
+        Response::macro('table', function (Table $table) {
             return $table->build($this);
         });
 

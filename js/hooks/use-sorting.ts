@@ -1,9 +1,9 @@
 import { queryBuilder } from '@lifespikes/cogent-ts';
 import { router } from '@inertiajs/react';
-import { omit, queryKeyFor } from '../support/utils';
-import { useTableProps } from './useTableProps';
-import { useParams } from './useParams';
-import { Column, UseSortingOptions } from '../types/common';
+import { omit, queryKeyFor } from '@/support/utils';
+import { useTableProps } from './use-table-props';
+import { useParams } from './use-params';
+import { Column, UseSortingOptions } from '@/types/common';
 
 export function useSorting({ tableName, queryKey, column }: UseSortingOptions) {
   const sortQueryKey = queryKey || queryKeyFor('sort', tableName);
@@ -50,6 +50,8 @@ export function useSorting({ tableName, queryKey, column }: UseSortingOptions) {
 
     router.visit(builder.get(), {
       method: 'get',
+      preserveScroll: true,
+      preserveState: true,
     });
   };
 
@@ -74,6 +76,7 @@ export function useSorting({ tableName, queryKey, column }: UseSortingOptions) {
 
     router.visit(builder.get(), {
       method: 'get',
+      preserveScroll: true,
     });
   };
 

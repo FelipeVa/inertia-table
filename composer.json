@@ -24,7 +24,7 @@
         "inertiajs/inertia-laravel": "^0.6.9",
         "spatie/laravel-data": "^3.7",
         "spatie/laravel-package-tools": "^1.14.0",
-        "spatie/laravel-query-builder": "^5.2"
+        "spatie/laravel-query-builder": "^5.6"
     },
     "require-dev": {
         "laravel/pint": "^1.0",

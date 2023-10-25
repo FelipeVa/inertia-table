@@ -2,17 +2,19 @@ import {
   Paginated,
   TablePropReturns,
   UseTableOptions,
-} from '../types/common';
+  UseTableReturns,
+} from '@/types/common';
 import { usePage } from '@inertiajs/react';
 
-export function useTable<T>({ name = 'default', resource }: UseTableOptions) {
+export function useTable<T>({
+  name = 'default',
+  resource,
+}: UseTableOptions): UseTableReturns<T> {
   const props = usePage<{
     tableProps: Record<string, TablePropReturns>;
   }>().props;
 
-  const data = (
-    resource ? props[resource] : props[name]
-  ) as Paginated<T>;
+  const data = (resource ? props[resource] : props[name]) as Paginated<T>;
   const tableProps = props.tableProps[name];
 
   if (!tableProps) {

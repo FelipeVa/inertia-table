@@ -3,9 +3,9 @@ import {
   FilterValue,
   SearchableItem,
   UseFilteringOptions,
-} from '../types/common';
-import { useParams } from './useParams';
-import { omit, omitNotation, queryKeyFor } from '../support/utils';
+} from '@/types/common';
+import { useParams } from './use-params';
+import { omit, omitNotation, queryKeyFor } from '@/support/utils';
 import { router } from '@inertiajs/react';
 
 export function useFiltering(props?: UseFilteringOptions) {
@@ -109,6 +109,7 @@ export function useFiltering(props?: UseFilteringOptions) {
     router.visit(builder.params(params).get(), {
       method: 'get',
       preserveState: true,
+      preserveScroll: true,
     });
   };
 

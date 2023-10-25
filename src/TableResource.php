@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -23,6 +24,11 @@ abstract class TableResource
      * Just in case you're using the Inertia Attribute
      */
     protected string $resourceName = '';
+
+    /**
+     * @var class-string<JsonResource>
+     */
+    protected string $resourceClass;
 
     /**
      * @var int[]
@@ -58,7 +64,7 @@ abstract class TableResource
         return app(static::class, $parameters);
     }
 
-    abstract protected function data(): QueryBuilder;
+    abstract protected function query(): QueryBuilder;
 
     /**
      * @return array<int, Column>
@@ -68,22 +74,52 @@ abstract class TableResource
     /**
      * @return array<int, Filter>
      */
-    abstract protected function filters(): array;
+    protected function filters(): array
+    {
+        return [];
+    }
 
     /**
      * @return array<int, Search>
      */
-    abstract protected function searches(): array;
+    protected function searches(): array
+    {
+        return [];
+    }
 
     public function getResourceName(): string
     {
         return $this->resourceName;
     }
 
-    public function resource(): ResourceCollection
+    public function resource(bool $paginate = true): ResourceCollection
     {
+        return $paginate ? $this->paginateResource() : $this->resourceWithoutPagination();
+    }
+
+    public function resourceWithoutPagination(): ResourceCollection
+    {
+        if (isset($this->resourceClass)) {
+            return $this->resourceClass::collection(
+                $this->query()->get()
+            );
+        }
+
         return new ResourceCollection(
-            $this->paginate($this->data())->withQueryString()
+            $this->query()->get()
+        );
+    }
+
+    public function paginateResource(): ResourceCollection
+    {
+        if (isset($this->resourceClass)) {
+            return $this->resourceClass::collection(
+                $this->paginate($this->query())->withQueryString()
+            );
+        }
+
+        return new ResourceCollection(
+            $this->paginate($this->query())->withQueryString()
         );
     }
 
@@ -146,5 +182,10 @@ abstract class TableResource
     private function getQueryKey(): string
     {
         return $this->tableName === 'default' ? '' : "{$this->tableName}_";
+    }
+
+    public function getQuery(): QueryBuilder
+    {
+        return $this->query();
     }
 }
