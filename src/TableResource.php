@@ -59,7 +59,7 @@ abstract class TableResource
     }
 
     /**
-     * @param  array<string, mixed>  $parameters
+     * @param array<string, mixed> $parameters
      */
     public static function make(array $parameters = []): static
     {
@@ -147,7 +147,7 @@ abstract class TableResource
     /**
      * @template T of Model
      *
-     * @param  string|EloquentBuilder<T>|Relation<T>|QueryBuilder  $subject
+     * @param string|EloquentBuilder<T>|Relation<T>|QueryBuilder $subject
      */
     protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, Request $request = null): QueryBuilder
     {
@@ -167,10 +167,9 @@ abstract class TableResource
     {
         $queryKey = $this->getQueryKey();
         $perPage = $this->request->integer("${queryKey}per_page", 15);
-        $maxPerPage = max($this->perPageOptions);
 
-        if ($perPage > $maxPerPage) {
-            $perPage = $maxPerPage;
+        if (!in_array($perPage, $this->perPageOptions, true)) {
+            $perPage = min($this->perPageOptions);
         }
 
         return $builder->paginate(
