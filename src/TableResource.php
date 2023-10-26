@@ -18,6 +18,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 abstract class TableResource
 {
     protected string $tableName = 'default';
+
     protected int $linksOnEachSide = 0;
 
     /**
@@ -58,7 +59,7 @@ abstract class TableResource
     }
 
     /**
-     * @param array<string, mixed> $parameters
+     * @param  array<string, mixed>  $parameters
      */
     public static function make(array $parameters = []): static
     {
@@ -146,7 +147,7 @@ abstract class TableResource
     /**
      * @template T of Model
      *
-     * @param string|EloquentBuilder<T>|Relation<T>|QueryBuilder $subject
+     * @param  string|EloquentBuilder<T>|Relation<T>|QueryBuilder  $subject
      */
     protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, Request $request = null): QueryBuilder
     {
