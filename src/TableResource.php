@@ -166,6 +166,11 @@ abstract class TableResource
     {
         $queryKey = $this->getQueryKey();
         $perPage = $this->request->integer("${queryKey}per_page", 15);
+        $maxPerPage = max($this->perPageOptions);
+
+        if ($perPage > $maxPerPage) {
+            $perPage = $maxPerPage;
+        }
 
         return $builder->paginate(
             perPage: $perPage,
