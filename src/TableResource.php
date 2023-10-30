@@ -1,10 +1,10 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact;
+namespace FelipeVa\InertiaTable;
 
-use FelipeVa\InertiaJsTableReact\Data\Column;
-use FelipeVa\InertiaJsTableReact\Data\Filter;
-use FelipeVa\InertiaJsTableReact\Data\Search;
+use FelipeVa\InertiaTable\Data\Column;
+use FelipeVa\InertiaTable\Data\Filter;
+use FelipeVa\InertiaTable\Data\Search;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;

@@ -1,6 +1,6 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact\Contracts;
+namespace FelipeVa\InertiaTable\Contracts;
 
 /**
  * @property string $name

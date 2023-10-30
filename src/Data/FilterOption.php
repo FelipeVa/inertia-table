@@ -1,6 +1,6 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact\Data;
+namespace FelipeVa\InertiaTable\Data;
 
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;

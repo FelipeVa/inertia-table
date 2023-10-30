@@ -1,9 +1,11 @@
 {
-    "name": "felipeva/inertiajs-table-react",
-    "description": "A Laravel package to help you quickly build Inertia.js tables with React and the help of Laravel Query Builder and Spatie's Laravel Data.",
+    "name": "felipeva/inertiajs-table",
+    "description": "A Laravel package to help you quickly build Inertia.js data tables with the help of Laravel Query Builder and Spatie's Laravel Data.",
     "keywords": [
         "felipeva",
         "laravel",
+        "inertiajs",
+        "inertia-table",
         "inertiajs-table-react"
     ],
     "homepage": "https://github.com/felipeva/inertiajs-table-react",
@@ -42,12 +44,12 @@
     },
     "autoload": {
         "psr-4": {
-            "FelipeVa\\InertiaJsTableReact\\": "src/"
+            "FelipeVa\\InertiaTable\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "FelipeVa\\InertiaJsTableReact\\Tests\\": "tests/"
+            "FelipeVa\\InertiaTable\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -78,10 +80,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "FelipeVa\\InertiaJsTableReact\\InertiaTableServiceProvider"
+                "FelipeVa\\InertiaTable\\InertiaTableServiceProvider"
             ],
             "aliases": {
-                "InertiaTable": "FelipeVa\\InertiaJsTableReact\\Facades\\InertiaTable"
+                "InertiaTable": "FelipeVa\\InertiaTable\\Facades\\InertiaTable"
             }
         }
     },

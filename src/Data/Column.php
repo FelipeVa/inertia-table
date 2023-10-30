@@ -1,9 +1,9 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact\Data;
+namespace FelipeVa\InertiaTable\Data;
 
-use FelipeVa\InertiaJsTableReact\Contracts\TableComponent;
-use FelipeVa\InertiaJsTableReact\Traits\Makeable;
+use FelipeVa\InertiaTable\Contracts\TableComponent;
+use FelipeVa\InertiaTable\Traits\Makeable;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;

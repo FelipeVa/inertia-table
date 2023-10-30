@@ -1,8 +1,8 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact;
+namespace FelipeVa\InertiaTable;
 
-use FelipeVa\InertiaJsTableReact\Commands\MakeTableResourceCommand;
+use FelipeVa\InertiaTable\Commands\MakeTableResourceCommand;
 use Illuminate\Support\Enumerable;
 use Inertia\Response;
 use Spatie\LaravelPackageTools\Package;

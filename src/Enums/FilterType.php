@@ -1,6 +1,6 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact\Enums;
+namespace FelipeVa\InertiaTable\Enums;
 
 enum FilterType: string
 {

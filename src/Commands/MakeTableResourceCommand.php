@@ -1,6 +1,6 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact\Commands;
+namespace FelipeVa\InertiaTable\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 

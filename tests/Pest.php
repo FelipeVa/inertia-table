@@ -1,5 +1,5 @@
 <?php
 
-use FelipeVa\InertiaJsTableReact\Tests\TestCase;
+use FelipeVa\InertiaTable\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

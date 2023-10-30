@@ -1,6 +1,6 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact\Traits;
+namespace FelipeVa\InertiaTable\Traits;
 
 use Illuminate\Support\Str;
 

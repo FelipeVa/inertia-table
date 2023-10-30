@@ -1,11 +1,11 @@
 <?php
 
-namespace FelipeVa\InertiaJsTableReact;
+namespace FelipeVa\InertiaTable;
 
-use FelipeVa\InertiaJsTableReact\Contracts\TableComponent;
-use FelipeVa\InertiaJsTableReact\Data\Column;
-use FelipeVa\InertiaJsTableReact\Data\Filter;
-use FelipeVa\InertiaJsTableReact\Data\Search;
+use FelipeVa\InertiaTable\Contracts\TableComponent;
+use FelipeVa\InertiaTable\Data\Column;
+use FelipeVa\InertiaTable\Data\Filter;
+use FelipeVa\InertiaTable\Data\Search;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;

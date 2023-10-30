@@ -1,8 +1,8 @@
 <?php
 namespace {{ namespace }};
 
-use FelipeVa\InertiaJsTableReact\Data\Column;
-use FelipeVa\InertiaJsTableReact\TableResource;
+use FelipeVa\InertiaTable\Data\Column;
+use FelipeVa\InertiaTable\TableResource;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class {{ class }} extends TableResource
