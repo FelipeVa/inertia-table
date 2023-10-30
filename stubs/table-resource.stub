@@ -1,0 +1,25 @@
+<?php
+namespace {{ namespace }};
+
+use FelipeVa\InertiaJsTableReact\Data\Column;
+use FelipeVa\InertiaJsTableReact\TableResource;
+use Spatie\QueryBuilder\QueryBuilder;
+
+class {{ class }} extends TableResource
+{
+    protected function query(): QueryBuilder
+    {
+        return $this->builder()
+            ->defaultSort('-created_at')
+            ->allowedFilters([])
+            ->allowedSorts([]);
+    }
+
+    /**
+     * @return Column[]
+     */
+    protected function columns(): array
+    {
+        return [];
+    }
+}

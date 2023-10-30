@@ -2,6 +2,7 @@
 
 namespace FelipeVa\InertiaJsTableReact;
 
+use FelipeVa\InertiaJsTableReact\Commands\MakeTableResourceCommand;
 use Illuminate\Support\Enumerable;
 use Inertia\Response;
 use Spatie\LaravelPackageTools\Package;
@@ -11,7 +12,8 @@ class InertiaTableServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $package->name('inertia-table');
+        $package->name('inertia-table')
+            ->hasCommand(MakeTableResourceCommand::class);
     }
 
     public function bootingPackage(): void
