@@ -125,7 +125,7 @@ abstract class TableResource
         );
     }
 
-    public function table(callable $callback = null): Table
+    public function table(?callable $callback = null): Table
     {
         $table = Table::make($this->request)
             ->name($this->tableName)
@@ -149,7 +149,7 @@ abstract class TableResource
      *
      * @param  string|EloquentBuilder<T>|Relation<T>|QueryBuilder  $subject
      */
-    protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, Request $request = null): QueryBuilder
+    protected function builder(QueryBuilder|Relation|EloquentBuilder|string $subject, ?Request $request = null): QueryBuilder
     {
         $this->updateQueryBuilderConfig();
 
