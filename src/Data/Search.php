@@ -16,11 +16,17 @@ class Search extends Data implements TableComponent
 
     public FilterType $type = FilterType::SEARCH;
 
+    /**
+     * @param  string[]  $options
+     */
     public function __construct(
         public string $name,
         public string $label,
         public string $placeholder = '',
+        public string $selectedOption = '',
+        public array $options = [],
         public bool $isGlobal = false,
+        public bool $isSelectable = false,
         public ?string $value = null,
     ) {
         if ($name === 'global') {
@@ -44,6 +50,37 @@ class Search extends Data implements TableComponent
     public function placeholder(string $placeholder): self
     {
         $this->placeholder = $placeholder;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function selectable(): self
+    {
+        $this->isSelectable = true;
+
+        return $this;
+    }
+
+    /**
+     * @param  string[]  $options
+     * @return $this
+     */
+    public function options(array $options): self
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function selectedOption(string $selectedOption): self
+    {
+        $this->selectedOption = $selectedOption;
 
         return $this;
     }
