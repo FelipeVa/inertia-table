@@ -166,7 +166,7 @@ abstract class TableResource
     protected function paginate(QueryBuilder $builder): LengthAwarePaginator
     {
         $queryKey = $this->getQueryKey();
-        $perPage = $this->request->integer("${queryKey}per_page", 15);
+        $perPage = $this->request->integer("{$queryKey}per_page", 15);
 
         if (! in_array($perPage, $this->perPageOptions, true)) {
             $perPage = min($this->perPageOptions);
@@ -174,7 +174,7 @@ abstract class TableResource
 
         return $builder->paginate(
             perPage: $perPage,
-            pageName: "${queryKey}page",
+            pageName: "{$queryKey}page",
         );
     }
 
